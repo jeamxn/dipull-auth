@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.12.1",
     "@types/cookie": "^0.6.0",
     "axios": "^1.6.8",
     "cookie": "^0.6.0",

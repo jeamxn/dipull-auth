@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "react-toastify/dist/ReactToastify.css";
 import React from "react";
 
+import GoogleOauthProvider from "@/provider/GoogleOauthProvider";
 import RecoilProvider from "@/provider/RecoilProvider";
 import ToastProvider from "@/provider/ToastProvider";
 
@@ -26,9 +28,11 @@ const RootLayout = ({
       <body>
         <RecoilProvider>
           <ToastProvider>
-            <main>
-              {children}
-            </main>
+            <GoogleOauthProvider>
+              <main>
+                {children}
+              </main>
+            </GoogleOauthProvider>
           </ToastProvider>
         </RecoilProvider>
       </body>
