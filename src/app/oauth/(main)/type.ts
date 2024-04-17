@@ -17,6 +17,7 @@ export const ClientGetType: ClientType = {
 };
 
 export type ClientData = {
+  owner: string;
   name: string;
   redirect: string[];
   get: ClientGet[];

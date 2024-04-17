@@ -30,7 +30,7 @@ const Oauth = async ({
     }
 
     return (
-      <Insider className="flex flex-col items-center justify-center h-[100vh]">
+      <Insider className="flex flex-col items-center justify-center h-full">
         <div className="bg-white rounded-xl p-6 flex flex-col gap-6 w-full max-w-[26rem]">
           <div className="flex flex-col gap-1">
             <p className="text-sm text-text/50">디미고인 계정 센터로</p>

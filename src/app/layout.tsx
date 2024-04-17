@@ -64,7 +64,7 @@ const RootLayout = ({
         <RecoilProvider>
           <ToastProvider>
             <GoogleOauthProvider>
-              <main>
+              <main className="h-full">
                 {children}
               </main>
             </GoogleOauthProvider>
