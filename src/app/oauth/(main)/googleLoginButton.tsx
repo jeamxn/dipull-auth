@@ -40,7 +40,7 @@ const GoogleLoginButton = ({
       else router.push(`${redirect}?token=${data.token}`);
     }
     catch (e: any) {
-      alert.error(e.response.data.message);
+      alert.update(alerting, e.response.data.message, "error");
     }
   };
 
