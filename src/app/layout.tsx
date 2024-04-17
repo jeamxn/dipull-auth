@@ -15,11 +15,11 @@ export const metadata: Metadata = {
     siteName: "디미고인 계정 센터",
     description: "그래그래 드디어 왔다 디미고인 계정 센터",
     type: "website",
-    url: "https://dimigo.net",
+    url: "https://auth.dimigo.net",
     locale: "ko_KR",
     images: [
       {
-        url: "https://dimigo.net/public/og-image.png",
+        url: "https://auth.dimigo.net/public/og-image.png",
         width: 4800,
         height: 2520,
       }
