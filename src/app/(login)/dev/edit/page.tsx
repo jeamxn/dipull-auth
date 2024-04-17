@@ -84,7 +84,7 @@ const Outing = () => {
             <table className="w-full overflow-auto">
               <tbody className="w-full border-y border-text/10 overflow-auto">
                 <tr className="w-full">
-                  <th className="text-center px-4 whitespace-nowrap py-2 font-semibold w-full" colSpan={2}>나의 Oauth 목록</th>
+                  <th className="text-center px-4 whitespace-nowrap py-2 font-semibold w-full" colSpan={3}>나의 Oauth 목록</th>
                   <td className="text-center px-4">수정</td>
                 </tr>
                 {
@@ -96,7 +96,10 @@ const Outing = () => {
                       <tr className="w-full border-y border-text/10" key={i} onClick={() => {}}>
                         <td className="text-center px-4 whitespace-nowrap py-2">{i + 1}</td>
                         <td className="w-full text-left px-4 whitespace-nowrap border-x border-text/10">
-                          <p className="text-left whitespace-nowrap">{v.name} ({v._id})</p>
+                          <p className="text-left whitespace-nowrap">{v.name}</p>
+                        </td>
+                        <td className="w-full text-left px-4 whitespace-nowrap border-r border-text/10">
+                          <p className="text-left whitespace-nowrap">{v._id}</p>
                         </td>
                         <td className="text-center px-4 select-none cursor-pointer" onClick={() => click()}>
                           <div className="flex justify-center items-center h-full">
@@ -109,7 +112,7 @@ const Outing = () => {
                     );
                   }) : (
                     <tr className="w-full border-y border-text/10">
-                      <td className="text-center px-4 whitespace-nowrap py-2 text-text/50" colSpan={3}>
+                      <td className="text-center px-4 whitespace-nowrap py-2 text-text/50" colSpan={4}>
                         등록된 Oauth가 없습니다. <Link href="/dev/add" className="cursor-pointer underline">등록하기</Link>
                       </td>
                     </tr>

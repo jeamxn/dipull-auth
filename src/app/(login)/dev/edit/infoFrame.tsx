@@ -1,6 +1,7 @@
 import React from "react";
 
 import { ClientDataDBString, ClientGetType, ClientGetTypeArray } from "@/app/oauth/(main)/type";
+import { alert } from "@/utils/alert";
 
 const InfoFrame = ({
   loading,
@@ -125,6 +126,8 @@ const InfoFrame = ({
           <button 
             className="w-min text-base rounded h-10 bg-text/10 border border-text/10 px-4"
             onClick={() => {
+              if(!newRedirect) return;
+              if(!newRedirect.match(/^(http|https):\/\//)) return alert.warn("http:// 또는 https://를 포함해 주세요.");
               setNewSelected({ ...newSelected, redirect: [...newSelected.redirect, newRedirect] });
               setNewRedirect("");
             }}

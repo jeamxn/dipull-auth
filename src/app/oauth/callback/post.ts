@@ -88,7 +88,7 @@ const POST = async (
     data: sendData,
   })
     .setProtectedHeader({ alg: "RS256" })
-    .setExpirationTime("2h")
+    .setExpirationTime("5min")
     .sign(privateKey);
 
   return new NextResponse(JSON.stringify({
