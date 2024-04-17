@@ -1,33 +1,184 @@
+@import url(//fonts.2w.vc/wanted-sans/static/font.css);
+/* @import url("https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.2/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css"); */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+* {
+  font-family: "Wanted Sans", sans-serif;
+  /* font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; */
+  letter-spacing: -.02rem;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: rgb(var(--color-text) / 1);
+  -webkit-tap-highlight-color : transparent;
+  word-break: keep-all;
+  transition: var(--transition-default);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  :root{
+    --key-interval: 300ms;
+    --key-color: 64 84 214;
+    --color-green: 0 200 5;
+
+    --transition-default: color var(--key-interval) ease-in-out, background-color var(--key-interval) ease-in-out, border var(--key-interval) ease-in-out;
+
+    --color-background-light: 250 250 255;
+    --color-text-light: 11 17 54;
+    --color-white-light: 255 255 255;
+
+    --color-background-dark: 0 0 0;
+    --color-text-dark: 230 230 230;
+    --color-white-dark: 15 15 15;
+
+    --color-background-blue: 0 0 255;
+    --color-text-blue: 230 230 230;
+    --color-white-blue: 66 135 245;
+
+    --color-background-red: 255 0 0;
+    --color-text-red: 230 230 230;
+    --color-white-red: 245, 66, 66;
+
+    --font-wanted-sans: "Wanted Sans", sans-serif;
+    --color-primary: var(--key-color);
+    --color-background: var(--color-background-light);
+    --color-text: var(--color-text-light);
+    --color-white: var(--color-white-light);
+
+    @media (prefers-color-scheme: dark) { 
+      --color-primary: var(--key-color);
+      --color-background: var(--color-background-dark);
+      --color-text: var(--color-text-dark);
+      --color-white: var(--color-white-dark);
+    }
+    @media (prefers-dark-interface) {
+      --color-primary: var(--key-color);
+      --color-background: var(--color-background-dark);
+      --color-text: var(--color-text-dark);
+      --color-white: var(--color-white-dark);
+    }
   }
 }
-
+html,
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgb(var(--color-background) / 1);
+}
+body {
+  min-height: calc(100% + env(safe-area-inset-top));
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+main {
+  max-width: 700px;
+  width: 100%;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+div{
+  user-select: none;
+}
+
+input, textarea, button, select {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  outline: none;
+}
+
+.loading_background {
+  animation: placeHolderShimmer .75s ease-in-out infinite alternate;
+  background-color: rgb(var(--color-white) / 1);
+  background: linear-gradient(to left, rgb(var(--color-white) / 1) 0%, rgb(var(--color-text) / 0.1) 50%, rgb(var(--color-white) / 1) 100%);
+  background-size: 200% 100%;
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: 0 0
   }
+  100% {
+    background-position: -100% 0
+  }
+}
+
+.loader {
+  color: rgb(var(--color-primary) / 1);
+  font-size: 45px;
+  text-indent: -9999em;
+  overflow: hidden;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  transform: translateZ(0);
+  animation: mltShdSpin 1.7s infinite ease, round 1.7s infinite ease;
+}
+
+@keyframes mltShdSpin {
+  0% {
+    box-shadow: 0 -0.83em 0 -0.4em,
+    0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em,
+    0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  5%,
+  95% {
+    box-shadow: 0 -0.83em 0 -0.4em, 
+    0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 
+    0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  10%,
+  59% {
+    box-shadow: 0 -0.83em 0 -0.4em, 
+    -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, 
+    -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+  }
+  20% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em,
+      -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, 
+      -0.749em -0.34em 0 -0.477em;
+  }
+  38% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em,
+      -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, 
+      -0.82em -0.09em 0 -0.477em;
+  }
+  100% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 
+    0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+}
+
+@keyframes round {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
+}
+
+.rotation {
+  animation: rotation 1s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.zoom {
+  transform: scale(1.3);
 }
