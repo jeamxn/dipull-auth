@@ -121,7 +121,7 @@ const Home = () => {
           loading ? "loading_background" : "",
         ].join(" ")}>
           <select 
-            className="text-base rounded h-10 border border-text/10 w-full px-4 transition-colors"
+            className="text-base rounded h-10 border border-text/10 w-full px-4 transition-colors bg-transparent"
             value={gradeClass}
             onChange={(e) => {
               setGradeClass(parseInt(e.target.value));

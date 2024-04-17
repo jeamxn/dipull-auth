@@ -22,7 +22,7 @@ const GoogleLoginButton = ({
   });
 
   const decode = async (google: TokenResponse) => {
-    const alerting = alert.loading("구글 로그인 중...");
+    const alerting = alert.loading("로그인 중...");
     try{
       const { data } = await axios.post("/oauth/callback", {
         clientId: client,

@@ -15,6 +15,7 @@ export const ClientGetType: ClientType = {
   type: "사용자 종류",
   profile_image: "프로필 이미지",
 };
+export const ClientGetTypeArray = Object.keys(ClientGetType) as ClientGet[];
 
 export type ClientData = {
   owner: string;
@@ -22,7 +23,21 @@ export type ClientData = {
   redirect: string[];
   get: ClientGet[];
 }
+export const defaultClientData: ClientData = {
+  owner: "",
+  name: "",
+  redirect: [],
+  get: [],
+};
 
 export type ClientDataDB = ClientData & {
   _id: ObjectId;
 }
+
+export type ClientDataDBString = ClientData & {
+  _id: string;
+}
+export const defaultClientDataDBString: ClientDataDBString = {
+  _id: "",
+  ...defaultClientData,
+};

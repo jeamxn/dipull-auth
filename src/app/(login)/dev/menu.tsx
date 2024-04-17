@@ -10,8 +10,12 @@ const menu = [
     name: "안내",
   },
   {
+    url: "/dev/add",
+    name: "추가",
+  },
+  {
     url: "/dev/edit",
-    name: "등록/수정",
+    name: "수정",
   },
 ];
 
