@@ -40,6 +40,7 @@ const InfoFrame = ({
           {
             ClientGetTypeArray.map((v, i) => {
               const click = () => {
+                if(v === "id") return;
                 if (newSelected.get.includes(v)) {
                   setNewSelected({ ...newSelected, get: newSelected.get.filter((x) => x !== v) });
                 } else {
@@ -52,9 +53,10 @@ const InfoFrame = ({
                   className={[
                     "text-base rounded h-10 border border-text/10 px-4 transition-colors",
                     "w-full max-[620px]:max-w-[49%] max-[480px]:max-w-full max-w-[32%]",
+                    v === "id" ? "cursor-not-allowed" : "",
                     newSelected.get.includes(v) ? "bg-text/10" : "",
                   ].join(" ")}
-                  disabled={loading}
+                  disabled={loading || v === "id"}
                   onClick={() => click()}
                 >
                   {ClientGetType[v]}

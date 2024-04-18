@@ -40,4 +40,5 @@ export type ClientDataDBString = ClientData & {
 export const defaultClientDataDBString: ClientDataDBString = {
   _id: "",
   ...defaultClientData,
+  get: ["id"],
 };
