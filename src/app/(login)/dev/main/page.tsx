@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React from "react";
 
 import Insider from "@/provider/insider";
@@ -19,7 +20,13 @@ const Outing = () => {
             "flex flex-row gap-2 bg-white rounded border border-text/10 p-5",
             loading ? "loading_background" : "",
           ].join(" ")}>
-            <p className="text-text/50 w-full text-center">기능 추가 예정입니다.</p>
+            <Link 
+              href="https://jeamxn.notion.site/Oauth-753ae066f1c1464c88f98e400764d812?pvs=4"
+              target="_blank"
+              className="w-full"
+            >
+              <p className="text-primary w-full text-center underline">여기서 Notion 문서를 참고해주세요.</p>
+            </Link>
           </article>
         </article>
       </Insider>
