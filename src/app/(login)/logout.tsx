@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import React from "react";
-import { toast } from "react-toastify";
 
 import instance from "@/utils/instance";
 
@@ -11,7 +10,7 @@ const Logout = () => {
   
   const logout = async () => {
     await instance.get("/auth/logout");
-    router.push("/login");
+    router.refresh();
   };
 
   return (

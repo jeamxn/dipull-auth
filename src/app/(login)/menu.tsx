@@ -1,11 +1,8 @@
 "use client";
 
-import * as jose from "jose";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-
-import { TokenInfo, defaultUserData } from "@/app/auth/type";
 
 const mainMenu = [
   {
@@ -20,30 +17,11 @@ const mainMenu = [
 
 const Menu = () => {
   const pathname = usePathname();
-  const [menuCopy, setMenuCopy] = React.useState(mainMenu);
-  const [userInfo, setUserInfo] = React.useState(defaultUserData);
-
-  React.useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken")!;
-    const decrypt = jose.decodeJwt(accessToken) as TokenInfo;
-    setUserInfo(decrypt.data);
-  }, []);
-
-  React.useEffect(() => {
-    if(userInfo.type !== "teacher") return;
-    setMenuCopy([
-      ...menuCopy, 
-      {
-        url: "/teacher/edit",
-        name: "관리",
-      }
-    ]);
-  }, [userInfo]);
 
   return (
     <nav className="px-4 w-full border-b border-text/10 flex flex-row justify-around">
       {
-        menuCopy.map((item, index) => {
+        mainMenu.map((item, index) => {
           const isCurrentPage = pathname.split("/")[1] === item.url.split("/")[1];
           return (
             <Link

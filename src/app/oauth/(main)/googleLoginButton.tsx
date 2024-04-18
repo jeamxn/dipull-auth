@@ -1,11 +1,53 @@
 "use client";
 
-import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useRouter } from "next/navigation";
 import React from "react";
 
 import { alert } from "@/utils/alert";
+
+export const loginAxios = async (
+  client: string,
+  access_token: string, 
+  redirect: string,
+  router: AppRouterInstance,
+) => {
+  const alerting = alert.loading("로그인 중...");
+  try{
+    const { data } = await axios.post("/oauth/callback", {
+      clientId: client,
+      access_token: access_token,
+    });
+    alert.update(
+      alerting, 
+      <div className="flex flex-col">
+        <p>로그인에 성공했습니다.</p>
+        <p>곧 원래 사이트로 이동 됩니다.</p>
+      </div>,
+      "success"
+    );
+    if(redirect.includes("?")) router.push(`${redirect}&token=${data.token}`);
+    else router.push(`${redirect}?token=${data.token}`);
+  }
+  catch (e: any) {
+    if(e.response.data.message === "등록된 사용자가 아닙니다."){
+      router.push(`/oauth/add?access_token=${access_token}&client=${client}&redirect=${redirect}`);
+      alert.update(
+        alerting, 
+        <div className="flex flex-col">
+          <p>등록된 사용자가 아닙니다.</p>
+          <p>본인 정보를 입력하여 등록해주세요.</p>
+        </div>, 
+        "info"
+      );
+    }
+    else {
+      alert.update(alerting, e.response.data.message, "error");
+    }
+  }
+};
 
 const GoogleLoginButton = ({
   client,
@@ -17,32 +59,9 @@ const GoogleLoginButton = ({
   const router = useRouter();
 
   const login = useGoogleLogin({
-    onSuccess: res => decode(res),
+    onSuccess: res => loginAxios(client, res.access_token, redirect, router),
     flow: "implicit",
   });
-
-  const decode = async (google: TokenResponse) => {
-    const alerting = alert.loading("로그인 중...");
-    try{
-      const { data } = await axios.post("/oauth/callback", {
-        clientId: client,
-        access_token: google.access_token,
-      });
-      alert.update(
-        alerting, 
-        <div className="flex flex-col">
-          <p>로그인에 성공했습니다.</p>
-          <p>곧 원래 사이트로 이동 됩니다.</p>
-        </div>,
-        "success"
-      );
-      if(redirect.includes("?")) router.push(`${redirect}&token=${data.token}`);
-      else router.push(`${redirect}?token=${data.token}`);
-    }
-    catch (e: any) {
-      alert.update(alerting, e.response.data.message, "error");
-    }
-  };
 
   return (
     <button 

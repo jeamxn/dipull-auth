@@ -7,16 +7,19 @@ import { connectToDatabase } from "@/utils/db";
 
 import { ClientData, ClientDataDB, ClientGet } from "../(main)/type";
 
-const POST = async (
+const PUT = async (
   req: Request,
 ) => {
   // 헤더 설정
   const new_headers = new Headers();
   new_headers.append("Content-Type", "application/json; charset=utf-8");
 
-  const { access_token, clientId }: {
+  const { access_token, clientId, gender, name, number }: {
     access_token: string;
     clientId: string;
+    gender: "male" | "female";
+    name: string;
+    number: number;
   }= await req.json();
 
   if(!access_token) return new NextResponse(JSON.stringify({
@@ -27,6 +30,24 @@ const POST = async (
   });
   if(!clientId) return new NextResponse(JSON.stringify({
     message: "clientId가 존재하지 않습니다.",
+  }), {
+    status: 400,
+    headers: new_headers,
+  });
+  if(!gender) return new NextResponse(JSON.stringify({
+    message: "성별을 선택 해주세요.",
+  }), {
+    status: 400,
+    headers: new_headers,
+  });
+  if(!name) return new NextResponse(JSON.stringify({
+    message: "이름을 입력 해주세요.",
+  }), {
+    status: 400,
+    headers: new_headers,
+  });
+  if(!number) return new NextResponse(JSON.stringify({
+    message: "학번을 입력 해주세요.",
   }), {
     status: 400,
     headers: new_headers,
@@ -57,39 +78,37 @@ const POST = async (
     headers: new_headers,
   });
 
-  const dataCollection = client.db().collection("data");
-  const updateAndGet = await dataCollection.findOneAndUpdate({
-    email: googleResponse.data.email,
-  }, {
-    $set: {
-      profile_image: googleResponse.data.picture,
-    },
-  }, {
-    returnDocument: "after",
+  if(googleResponse.data.email.split("@")[1] !== "dimigo.hs.kr") return new NextResponse(JSON.stringify({
+    message: "디미고 구글 계정만 가입 가능합니다.",
+  }), {
+    status: 400,
+    headers: new_headers,
   });
-  if(!updateAndGet) {
-    if(googleResponse.data.email.split("@")[1] !== "dimigo.hs.kr") {
-      return new NextResponse(JSON.stringify({
-        message: "디미고 구글 계정만 가입 가능합니다.",
-      }), {
-        status: 400,
-        headers: new_headers,
-      });
-    }
+
+  const dataCollection = client.db().collection("data");
+  const userData = await dataCollection.findOne({ email: googleResponse.data.email });
+  if(userData) {
     return new NextResponse(JSON.stringify({
-      message: "등록된 사용자가 아닙니다.",
+      message: "이미 등록된 사용자입니다.",
     }), {
       status: 400,
       headers: new_headers,
     });
   }
+  const newData = {
+    email: googleResponse.data.email,
+    gender, name, number,
+    type: "student",
+    profile_image: googleResponse.data.picture,
+  };
+  const insertAndGet = await dataCollection.insertOne(newData);
 
   const sendData: {
     [key in ClientGet]?: string;
   } = {};
   for(const get of clientData.get) {
-    if(get === "id") sendData[get] = updateAndGet._id.toString();
-    else sendData[get] = updateAndGet[get];
+    if(get === "id") sendData[get] = insertAndGet.insertedId.toString();
+    else sendData[get] = newData[get];
   }
 
   const privateKey = await jose.importPKCS8(process.env.OAUTH_JWT_SECRET || "", "RS256");
@@ -103,10 +122,10 @@ const POST = async (
 
   return new NextResponse(JSON.stringify({
     token: jwt,
+    message: "성공적으로 계정을 추가하였습니다.",
   }), {
     headers: new_headers,
   });
-
 };
 
-export default POST;
+export default PUT;
