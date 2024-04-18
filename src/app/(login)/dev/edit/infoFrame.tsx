@@ -16,7 +16,7 @@ const InfoFrame = ({
   return (
     <>
       <section className="flex flex-col gap-3">
-        <h1 className="text-xl font-semibold w-max whitespace-nowrap">이름</h1>
+        <h1 className="text-xl font-semibold w-max whitespace-nowrap">서비스 이름</h1>
         <section className={[
           "bg-white p-5 border border-text/10 rounded",
           loading ? "loading_background" : "",

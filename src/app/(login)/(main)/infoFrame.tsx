@@ -116,7 +116,7 @@ const InfoFrame = ({
                     value={newData.number % 100 || ""}
                     onChange={(e) => {
                       const value = isNaN(parseInt(e.target.value)) ? 0 : parseInt(e.target.value);
-                      setNewData({ ...newData, number: newData.number - newData.number % 100 + value });
+                      setNewData({ ...newData, number: newData.number - newData.number % 100 + (value % 100) });
                     }}
                     disabled={loading}
                   />

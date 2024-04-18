@@ -50,6 +50,15 @@ const PUT = async (
   const client = await connectToDatabase();
   const dataCollection = client.db().collection("data");
   const objcet_id = ObjectId.createFromHexString(verified.payload.id);
+
+  const getMine = await dataCollection.findOne({ _id: objcet_id });
+  if(getMine?.type === "student" && number >= 4000) return new NextResponse(JSON.stringify({
+    message: "올바른 학번을 입력해 주세요.",
+  }), {
+    status: 400,
+    headers: new_headers,
+  });
+
   const update = await dataCollection.updateOne({ _id: objcet_id }, {
     $set: {
       gender, name, number,

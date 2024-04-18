@@ -46,7 +46,7 @@ const PUT = async (
     status: 400,
     headers: new_headers,
   });
-  if(!number) return new NextResponse(JSON.stringify({
+  if(!number || number >= 4000) return new NextResponse(JSON.stringify({
     message: "학번을 입력 해주세요.",
   }), {
     status: 400,
