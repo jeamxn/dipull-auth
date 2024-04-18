@@ -42,6 +42,12 @@ const POST = async (
     status: 400,
     headers: new_headers,
   });
+  if(!get.get.includes("id")) return new NextResponse(JSON.stringify({
+    message: "식별번호는 필수 선택입니다.",
+  }), {
+    status: 400,
+    headers: new_headers,
+  });
 
   const client = await connectToDatabase();
   const clientsCollection = client.db().collection("clients");
