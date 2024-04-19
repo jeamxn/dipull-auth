@@ -1,7 +1,6 @@
 "use client";
 
 import axios from "axios";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -52,7 +51,7 @@ const Home = ({
   };
 
   React.useEffect(() => {
-    if(!searchParams.access_token) router.back();
+    // if(!searchParams.access_token) router.back();
   }, []);
 
   return (
