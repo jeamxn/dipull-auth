@@ -38,8 +38,14 @@ export const GET = async (req: Request) => {
     expires: moment().tz("Asia/Seoul").subtract(1, "days").toDate(),
     httpOnly: true,
   });
+  const accessTokenCookie = serialize("accessToken", "", {
+    path: "/",
+    expires: moment().tz("Asia/Seoul").add(1, "days").toDate(),
+    httpOnly: true,
+  });
   new_headers.append("Set-Cookie", refreshTokenCookie);
-  
+  new_headers.append("Set-Cookie", accessTokenCookie);
+
   // 응답
   return new NextResponse(JSON.stringify({
     message: "로그아웃 되었습니다.",

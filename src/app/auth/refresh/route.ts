@@ -64,7 +64,13 @@ export const GET = async (req: Request) => {
     expires: moment().tz("Asia/Seoul").add(30, "days").toDate(),
     httpOnly: true,
   });
+  const accessTokenCookie = serialize("accessToken", newAccessToken, {
+    path: "/",
+    expires: moment().tz("Asia/Seoul").add(1, "days").toDate(),
+    httpOnly: true,
+  });
   headers.append("Set-Cookie", refreshTokenCookie);
+  headers.append("Set-Cookie", accessTokenCookie);
 
   // 응답
   return new NextResponse(JSON.stringify({
