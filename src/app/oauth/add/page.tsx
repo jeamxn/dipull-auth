@@ -2,13 +2,13 @@
 
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 
 import InfoFrame, { InfoFrameNewData } from "@/app/(login)/(main)/infoFrame";
 import Insider from "@/provider/insider";
 import { alert } from "@/utils/alert";
 
-const Home = () => {
+const Add = () => {
   const searchParams = useSearchParams();
   const access_token = searchParams.get("access_token") || "";
   const client = searchParams.get("client") || "";
@@ -87,4 +87,12 @@ const Home = () => {
   );
 };
 
-export default Home;
+const ExportAdd = () => {
+  return (
+    <Suspense>
+      <Add />
+    </Suspense>
+  );
+};
+
+export default ExportAdd;
