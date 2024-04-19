@@ -5,7 +5,9 @@ import { NextResponse } from "next/server";
 
 import { connectToDatabase } from "@/utils/db";
 
-import { ClientData, ClientDataDB, ClientGet } from "../(main)/type";
+import { ClientDataDB, ClientGet } from "../(main)/type";
+
+import { getJwtToken } from "./utils";
 
 const POST = async (
   req: Request,
@@ -92,14 +94,7 @@ const POST = async (
     else sendData[get] = updateAndGet[get];
   }
 
-  const privateKey = await jose.importPKCS8(process.env.OAUTH_JWT_SECRET || "", "RS256");
-
-  const jwt = await new jose.SignJWT({
-    data: sendData,
-  })
-    .setProtectedHeader({ alg: "RS256" })
-    .setExpirationTime("5min")
-    .sign(privateKey);
+  const jwt = await getJwtToken(sendData);
 
   return new NextResponse(JSON.stringify({
     token: jwt,
