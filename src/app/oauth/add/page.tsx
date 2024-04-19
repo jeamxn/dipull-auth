@@ -1,22 +1,19 @@
 "use client";
 
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 
 import InfoFrame, { InfoFrameNewData } from "@/app/(login)/(main)/infoFrame";
 import Insider from "@/provider/insider";
 import { alert } from "@/utils/alert";
 
-const Home = ({
-  searchParams,
-}: {
-  searchParams: {
-    access_token: string;
-    client: string;
-    redirect: string;
-  };
-}) => {
+const Home = () => {
+  const searchParams = useSearchParams();
+  const access_token = searchParams.get("access_token") || "";
+  const client = searchParams.get("client") || "";
+  const redirect = searchParams.get("redirect") || "";
+
   const [loading, setLoading] = React.useState(false);
   const [newData, setNewData] = React.useState<InfoFrameNewData>({
     gender: "male",
@@ -30,8 +27,8 @@ const Home = ({
     const alerting = alert.loading("계정 추가 중...");
     try{
       const { data } = await axios.put("/oauth/callback", {
-        clientId: searchParams.client,
-        access_token: searchParams.access_token,
+        clientId: client,
+        access_token: access_token,
         ...newData,
       });
       alert.update(
@@ -42,8 +39,8 @@ const Home = ({
         </div>,
         "success"
       );
-      if(searchParams.redirect.includes("?")) router.push(`${searchParams.redirect}&token=${data.token}`);
-      else router.push(`${searchParams.redirect}?token=${data.token}`);
+      if(redirect.includes("?")) router.push(`${redirect}&token=${data.token}`);
+      else router.push(`${redirect}?token=${data.token}`);
     }
     catch (e: any) {
       alert.update(alerting, e.response.data.message, "error");
@@ -51,7 +48,7 @@ const Home = ({
   };
 
   React.useEffect(() => {
-    // if(!searchParams.access_token) router.back();
+    if(!access_token) router.back();
   }, []);
 
   return (
