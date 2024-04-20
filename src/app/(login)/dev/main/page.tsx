@@ -21,11 +21,11 @@ const Outing = () => {
             loading ? "loading_background" : "",
           ].join(" ")}>
             <Link 
-              href="https://jeamxn.notion.site/Oauth-753ae066f1c1464c88f98e400764d812?pvs=4"
+              href="https://docs.dimigo.net/oauth"
               target="_blank"
               className="w-full"
             >
-              <p className="text-primary w-full text-center underline">여기서 Notion 문서를 참고해주세요.</p>
+              <p className="text-primary w-full text-center underline">여기서 개발 문서를 참고해주세요.</p>
             </Link>
           </article>
         </article>
