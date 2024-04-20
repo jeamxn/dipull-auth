@@ -67,19 +67,7 @@ const GoogleLoginButton = ({
     flow: "implicit",
   });
 
-  const [isKakaoBrower, setKakaoBrower] = React.useState(false); 
-  React.useEffect(() => { 
-    const isKakao = navigator.userAgent.match("KAKAOTALK"); 
-    console.log(navigator.userAgent); 
-    setKakaoBrower(Boolean(isKakao)); 
-  }, []);
-
-  return !isKakaoBrower ? (
-    <div className="flex flex-col items-center justify-center w-full">
-      <p className="text-[#EF4444] font-medium text-base">카카오톡 내부 브라우저는 지원하지 않습니다.</p>
-      <p className="text-[#EF4444] font-medium text-base">외부 브라우저를 이용해주세요.</p>
-    </div>
-  ) : (
+  return (
     <button 
       className="w-full bg-background py-4 px-5 border border-text/5 rounded flex flex-row items-center justify-center gap-2"
       onClick={() => login()}
