@@ -10,7 +10,14 @@ export const middleware = async (request: NextRequest) => {
   const verified = await refreshVerify(refreshToken);
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-url", request.url);
+
   try{
+    //userAgent
+    const userAgent = requestHeaders.get("user-agent");
+    if(userAgent?.includes("KAKAOTALK")){
+      return NextResponse.redirect(`kakaotalk://web/openExternal?url=${encodeURIComponent(request.url)}`);
+    }
+  
     if(!(request.nextUrl.pathname.startsWith("/login") || request.nextUrl.pathname.startsWith("/oauth"))){
       if(!verified.ok) {
         return NextResponse.redirect(new URL("/login", defaultUrl));
