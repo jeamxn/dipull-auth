@@ -21,7 +21,7 @@ const Outing = () => {
             loading ? "loading_background" : "",
           ].join(" ")}>
             <Link 
-              href="https://docs.dimigo.net/oauth"
+              href="https://docs.dimigo.net/developer/oauth"
               target="_blank"
               className="w-full"
             >
