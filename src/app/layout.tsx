@@ -7,6 +7,8 @@ import GoogleOauthProvider from "@/provider/GoogleOauthProvider";
 import RecoilProvider from "@/provider/RecoilProvider";
 import ToastProvider from "@/provider/ToastProvider";
 
+import Darkmode from "./Darkmode";
+
 export const metadata: Metadata = {
   title: "디미고인 계정 센터",
   description: "그래그래 드디어 왔다 디미고인 계정 센터",
@@ -70,6 +72,7 @@ const RootLayout = ({
             </GoogleOauthProvider>
           </ToastProvider>
         </RecoilProvider>
+        <Darkmode />
       </body>
     </html>
   );
