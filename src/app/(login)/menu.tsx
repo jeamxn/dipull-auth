@@ -18,17 +18,6 @@ const mainMenu = [
 const Menu = () => {
   const pathname = usePathname();
 
-  React.useEffect(() => {
-    const isDarkMode = window.navigator.userAgent.includes("{isDark property}");
-    document.documentElement.setAttribute("color-theme", isDarkMode ? "dark" : "light");
-
-    const mediaQueryList = window.matchMedia("(prefers-color-scheme: dark)");
-    mediaQueryList.addEventListener("change", (e) => {
-      document.documentElement.setAttribute("color-theme", e.matches ? "dark" : "light");
-    });
-    return () => mediaQueryList.removeEventListener("change", () => {});
-  }, []);
-
   return (
     <nav className="px-4 w-full border-b border-text/10 flex flex-row justify-around">
       {
