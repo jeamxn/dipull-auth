@@ -6,6 +6,8 @@ import { ClientDataDBString } from "@/app/oauth/(main)/type";
 import { connectToDatabase } from "@/utils/db";
 import { verify } from "@/utils/jwt";
 
+import { isValidUrl } from "./utils";
+
 const POST = async (
   req: Request,
 ) => {
@@ -48,6 +50,15 @@ const POST = async (
     status: 400,
     headers: new_headers,
   });
+  for(const redirect of get.redirect) {
+    if(!isValidUrl(redirect)) return new NextResponse(JSON.stringify({
+      message: "올바르지 않은 리다이렉트 URI입니다.",
+    }), {
+      status: 400,
+      headers: new_headers,
+    });
+  }
+
 
   const client = await connectToDatabase();
   const clientsCollection = client.db().collection("clients");
