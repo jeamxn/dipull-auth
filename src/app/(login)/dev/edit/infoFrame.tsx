@@ -1,5 +1,6 @@
 import React from "react";
 
+import { isValidUrl } from "@/app/api/oauth/utils";
 import { ClientDataDBString, ClientGetType, ClientGetTypeArray } from "@/app/oauth/(main)/type";
 import { alert } from "@/utils/alert";
 
@@ -129,7 +130,7 @@ const InfoFrame = ({
             className="w-min text-base rounded h-10 bg-text/10 border border-text/10 px-4"
             onClick={() => {
               if(!newRedirect) return;
-              if(!newRedirect.match(/^(http|https):\/\//)) return alert.warn("http:// 또는 https://를 포함해 주세요.");
+              if(!isValidUrl(newRedirect)) return alert.warn("올바르지 않은 Redirect Uri입니다.");
               setNewSelected({ ...newSelected, redirect: [...newSelected.redirect, newRedirect] });
               setNewRedirect("");
             }}
