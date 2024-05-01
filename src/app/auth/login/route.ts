@@ -17,8 +17,8 @@ export const GET = async (req: Request) => {
   const token = searchParams.get("token") || "";
 
   // 디미고인 퍼블릭 키 가져오기
-  const public_key = await axios.get(`${req.headers.get("x-origin")}/oauth/public`);
-  const public_key_encodes = await jose.importSPKI(public_key.data, "RS256");
+  const public_key = process.env.OAUTH_JWT_PUBLIC || "";
+  const public_key_encodes = await jose.importSPKI(public_key, "RS256");
 
   // 디미고인 토큰 디코딩
   const decodedToken = await jose.jwtVerify(token, public_key_encodes);
