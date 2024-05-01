@@ -1,0 +1,23 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: nextjs
+    init: |
+      npm install -g bun
+      bun install
+      docker compose pull
+    command: |
+      docker compose up -d
+      bun dev
+
+ports:
+  - name: mognodb
+    port: 27017
+    onOpen: ignore
+  - name: mognodb-express
+    port: 8081  
+    onOpen: open-browser
+  - name: NEXT.JS
+    port: 3000
+    onOpen: open-browser

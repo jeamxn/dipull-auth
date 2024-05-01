@@ -2,14 +2,15 @@ import { cookies } from "next/headers";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-import { refreshVerify, verify } from "@/utils/jwt";
+import { refreshVerify } from "@/utils/jwt";
 
 export const middleware = async (request: NextRequest) => {
-  const defaultUrl = process.env.NEXT_PUBLIC_APP_URI || "";
+  const origin = request.nextUrl.origin;
   const refreshToken = cookies().get("refreshToken")?.value || "";
   const verified = await refreshVerify(refreshToken);
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-url", request.url);
+  requestHeaders.set("x-origin", origin);
 
   try{
     //userAgent
@@ -20,12 +21,12 @@ export const middleware = async (request: NextRequest) => {
   
     if(!(request.nextUrl.pathname.startsWith("/login") || request.nextUrl.pathname.startsWith("/oauth"))){
       if(!verified.ok) {
-        return NextResponse.redirect(new URL("/login", defaultUrl));
+        return NextResponse.redirect(new URL("/login", origin));
       }
     }
   }
   catch {
-    return NextResponse.redirect(new URL("/login", defaultUrl));
+    return NextResponse.redirect(new URL("/login", origin));
   }
   return NextResponse.next({
     request: {
