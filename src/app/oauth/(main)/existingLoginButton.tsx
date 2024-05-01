@@ -28,7 +28,7 @@ const ExistingLoginButton = ({
       const { data } = await instance.post("/oauth/callback/existing", {
         clientId: client,
       });
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_URI}/auth/login?token=${data.token}`);
+      const res = await axios.get(`/auth/login?token=${data.token}`);
       localStorage.setItem("accessToken", res.data.accessToken);
       alert.update(
         alerting, 

@@ -20,7 +20,7 @@ export const loginAxios = async (
       clientId: client,
       access_token: access_token,
     });
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_URI}/auth/login?token=${data.token}`);
+    const res = await axios.get(`/auth/login?token=${data.token}`);
     localStorage.setItem("accessToken", res.data.accessToken);
     alert.update(
       alerting, 
