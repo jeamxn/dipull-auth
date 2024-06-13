@@ -29,7 +29,7 @@ const LoginedLayout = async ({
         veryfied.ok ? (
           <header className="w-full">
             <article className="w-full flex justify-center items-center border-b border-text/10 px-5 py-3">
-              <p className="text-primary text-lg font-semibold">디미고인 계정 센터</p>
+              <p className="text-primary text-lg font-semibold">디풀 계정 센터</p>
             </article>
             <article className="w-full py-6 px-4 border-b border-text/10 flex flex-row items-center justify-between gap-4">
               <div className="flex flex-row gap-4 items-center">
@@ -48,7 +48,7 @@ const LoginedLayout = async ({
 
       <footer className="w-full pt-5 pb-8">
         <article className="w-full flex flex-col justify-center items-center gap-2">
-          <p className="text-text/40 text-sm">&#34;내가 이것보단 잘 만들겠다 ㅋㅋ&#34;하는 경우엔 <a className="text-primary/40 underline" href="https://github.com/jeamxn/dimigoin-pull-service" target="_blank" rel="noreferrer">직접 만드세요</a>!</p>
+          <p className="text-text/40 text-sm">&#34;내가 이것보단 잘 만들겠다 ㅋㅋ&#34;하는 경우엔 <a className="text-primary/40 underline" href="https://github.com/jeamxn/dipull-auth" target="_blank" rel="noreferrer">직접 만드세요</a>!</p>
           <p className="text-text/40 text-sm">오류 및 기타 문의 사항은 <a className="text-primary/40 underline" href="kakaoopen://join?l=%2Fme%2FJeamxn&r=EW">최재민</a>에게 연락바랍니다!</p>
           <p className="text-text/40 text-sm">자세한 서비스 사용 방법은 <a className="text-primary/40 underline" href="https://docs.dimigo.net" target="_blank" rel="noreferrer">여기</a>를 참고 해주세요!</p>
         </article>

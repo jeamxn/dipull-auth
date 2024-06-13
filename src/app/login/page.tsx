@@ -47,10 +47,10 @@ const Login = () => {
         <article className="flex flex-col gap-2 justify-center items-end w-full">
           <figure className="flex flex-row gap-2 justify-start items-center">
           
-            <p className="text-white whitespace-nowrap text-base">디미고인 계정 센터</p>
+            <p className="text-white whitespace-nowrap text-base">디풀 계정 센터</p>
           </figure>
           <figure className="flex flex-row gap-0 justify-start items-center">
-            <p className="text-xl text-white font-bold text-left whitespace-nowrap">디미고인 계정</p>
+            <p className="text-xl text-white font-bold text-left whitespace-nowrap">디풀 계정</p>
             <p className="text-xl text-white font-normal text-left whitespace-nowrap">으로 로그인하기</p>
           </figure>
         </article>
