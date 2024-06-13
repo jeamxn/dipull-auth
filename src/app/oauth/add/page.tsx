@@ -55,7 +55,7 @@ const Add = () => {
     <>
       <header className="w-full">
         <article className="w-full flex justify-center items-center border-b border-text/10 px-5 py-3">
-          <p className="text-primary text-lg font-semibold">디미고인 계정 센터</p>
+          <p className="text-primary text-lg font-semibold">디풀 계정 센터</p>
         </article>
       </header>
       <Insider>

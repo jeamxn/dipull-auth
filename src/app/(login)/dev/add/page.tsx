@@ -34,7 +34,7 @@ const Outing = () => {
       <Insider>
         <article className="flex flex-col gap-3">
           <section className="flex flex-col gap-1">
-            <h1 className="text-xl font-semibold">디미고인 Oauth 추가</h1>
+            <h1 className="text-xl font-semibold">디풀 Oauth 추가</h1>
             <h1 className="text-base text-[#e11d48]">Oauth 남용 시 통보 없이 삭제될 수 있습니다. 올바른 용도로 사용 부탁드립니다.</h1>
           </section>
         </article>

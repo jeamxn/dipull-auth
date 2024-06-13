@@ -15,7 +15,7 @@ const Outing = () => {
       <Menu />
       <Insider>
         <article className="flex flex-col gap-3">
-          <h1 className="text-xl font-semibold">디미고인 Oauth 개발 이용 안내</h1>
+          <h1 className="text-xl font-semibold">디풀 Oauth 개발 이용 안내</h1>
           <article className={[
             "flex flex-row gap-2 bg-white rounded border border-text/10 p-5",
             loading ? "loading_background" : "",
