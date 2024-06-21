@@ -11,11 +11,11 @@ import Darkmode from "./Darkmode";
 
 export const metadata: Metadata = {
   title: "디풀 계정 센터",
-  description: "그래그래 드디어 왔다 디풀 계정 센터",
+  description: "한국디지털미디어고등학교의 통합 계정 관리 시스템, 디풀 계정 센터.",
   openGraph:{
     title: "디풀 계정 센터",
     siteName: "디풀 계정 센터",
-    description: "그래그래 드디어 왔다 디풀 계정 센터",
+    description: "한국디지털미디어고등학교의 통합 계정 관리 시스템, 디풀 계정 센터.",
     type: "website",
     url: "https://auth.dimigo.net",
     locale: "ko_KR",

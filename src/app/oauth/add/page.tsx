@@ -65,7 +65,7 @@ const Add = () => {
             <h1 className="text-base text-[#e11d48]">허위로 정보를 입력하였을 경우, 불이익은 책임지지 않습니다.</h1>
             <h1 className="text-base text-primary">@dimigo.hs.kr로 끝나는 계정만 가입 가능합니다.</h1>
             <h1 className="text-base">
-              선생님의 경우 아무 학번이나 입력하신 후, <a className="text-primary underline" href="kakaoopen://join?l=%2Fme%2FJeamxn&r=EW">최재민</a>에게 연락주시면 권한 부여 해 드리겠습니다.
+              선생님의 경우 아무 학번이나 입력하신 후, <a className="text-primary underline" href="https://discord.gg/U7FBXyPKM6" target="_blank" rel="noreferrer">개발자</a>에게 연락주시면 권한 부여 하겠습니다.
             </h1>
           </section>
         </article>
