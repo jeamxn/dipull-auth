@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db_init": "bun run ./init/index.ts"
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.1",
