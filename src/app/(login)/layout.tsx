@@ -1,47 +1,26 @@
 /* eslint-disable @next/next/no-img-element */
-import { headers } from "next/headers";
 import React from "react";
 
-import { refreshVerify } from "@/utils/jwt";
+import { getUserAndVerify } from "@/utils/server";
 
-import Logout from "./logout";
-import Menu from "./menu";
+import Header from "./(header)/header";
+import User from "./(header)/user";
 
 const LoginedLayout = async ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const cookie = headers().get("cookie")?.split("; ").map((c: string) => {
-    const [key, value] = c.split("=");
-    return {
-      key: key,
-      value: value,
-    };
-  }) || [];
-  const cookieJSON = Object.fromEntries(cookie.map((c: any) => [c.key, c.value]));
-  const { refreshToken } = cookieJSON;
-  const veryfied = await refreshVerify(refreshToken);
+  const { verified, userInfo } = await getUserAndVerify();
 
   return (
     <>
       {
-        veryfied.ok ? (
-          <header className="w-full">
-            <article className="w-full flex justify-center items-center border-b border-text/10 px-5 py-3">
-              <p className="text-primary text-lg font-semibold">디풀 계정 센터</p>
-            </article>
-            <article className="w-full py-6 px-4 border-b border-text/10 flex flex-row items-center justify-between gap-4">
-              <div className="flex flex-row gap-4 items-center">
-                <img src={veryfied.payload.profile_image} alt={veryfied.payload.name} width={60} height={60} className="rounded-full" />
-                <figure className="flex flex-col justify-center items-start">
-                  <p className="font-semibold text-lg">{veryfied.payload.number} {veryfied.payload.name}</p>
-                  <Logout />
-                </figure>
-              </div>
-            </article>
-            <Menu />
-          </header>
+        verified.ok ? (
+          <>
+            <Header userInfo={userInfo} />
+            <User payload={userInfo} />
+          </>
         ) : null
       }
       {children}

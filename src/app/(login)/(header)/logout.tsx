@@ -11,6 +11,7 @@ const Logout = () => {
   const logout = async () => {
     await instance.get("/auth/logout");
     router.refresh();
+    // router.push("/login");
   };
 
   return (

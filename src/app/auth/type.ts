@@ -4,7 +4,7 @@ export type UserData = {
   gender: string;
   name: string;
   number: number;
-  type: string;
+  type: "teacher" | "student";
 }
 
 export type UserDB = UserData & {

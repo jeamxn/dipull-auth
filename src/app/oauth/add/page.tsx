@@ -64,9 +64,8 @@ const Add = () => {
             <h1 className="text-xl font-semibold">내 계정 추가하기</h1>
             <h1 className="text-base text-[#e11d48]">허위로 정보를 입력하였을 경우, 불이익은 책임지지 않습니다.</h1>
             <h1 className="text-base text-primary">@dimigo.hs.kr로 끝나는 계정만 가입 가능합니다.</h1>
-            <h1 className="text-base">
-              선생님의 경우 아무 학번이나 입력하신 후, <a className="text-primary underline" href="https://discord.gg/U7FBXyPKM6" target="_blank" rel="noreferrer">개발자</a>에게 연락주시면 권한 부여 하겠습니다.
-            </h1>
+            <h1 className="text-base">선생님의 경우 아무 학번이나 입력하신 후, 이미 권한이 있는 동료 교사에게 권한 추가 요청을 해주세요.</h1>
+            <h1 className="text-base"><a className="text-primary underline" href="/teacher/authority/list" target="_blank" rel="noreferrer">디풀 계정 센터</a>에서 이미 교사 권한이 있는 사람이 권한 추가 가능합니다.</h1>
           </section>
         </article>
       
