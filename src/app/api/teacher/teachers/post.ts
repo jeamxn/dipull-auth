@@ -49,7 +49,7 @@ const POST = async (
   const objectid = ObjectId.createFromHexString(id);
 
   const select = await dataCollection.findOne({ _id: objectid }) as unknown as DataDB;
-  if (select.email === "colajeamin@gmail.com") return new NextResponse(JSON.stringify({
+  if (select.email.split("@")[1] !== "dimigo.hs.kr") return new NextResponse(JSON.stringify({
     message: "관리자 권한을 삭제할 수 없습니다. (개발자 계정임)",
   }), {
     status: 400,
