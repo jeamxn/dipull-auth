@@ -13,7 +13,6 @@ export const middleware = async (request: NextRequest) => {
   requestHeaders.set("x-origin", origin);
 
   try{
-    //userAgent
     const userAgent = requestHeaders.get("user-agent");
     if(userAgent?.includes("KAKAOTALK")){
       return NextResponse.redirect(`kakaotalk://web/openExternal?url=${encodeURIComponent(request.url)}`);
@@ -23,6 +22,15 @@ export const middleware = async (request: NextRequest) => {
       if(!verified.ok) {
         return NextResponse.redirect(new URL("/login", origin));
       }
+      else if(request.nextUrl.pathname.startsWith("/teacher") && verified.payload.type !== "teacher") {
+        return NextResponse.redirect(new URL("/", origin));
+      }
+      // else if(request.nextUrl.pathname.startsWith("/bamboo") && verified.payload.type !== "student") {
+      //   return NextResponse.redirect(new URL("/", origin));
+      // }
+    }
+    else if(verified.ok) {
+      return NextResponse.redirect(new URL("/", origin));
     }
   }
   catch {

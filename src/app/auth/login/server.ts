@@ -25,7 +25,7 @@ export const getTokens = async (token: string) => {
   // refresh, access 토큰 발급
   const refreshData: UserData = {
     id: data.data.id,
-    type: data.data.type,
+    type: data.data.type as "teacher" | "student",
     profile_image: data.data.profile_image,
     gender: data.data.gender,
     name: data.data.name,
@@ -43,7 +43,7 @@ export const getTokens = async (token: string) => {
     id: update_data.id,
     data: {
       id: update_data.id,
-      type: data.data.type,
+      type: data.data.type as "teacher" | "student",
       profile_image: update_data.profile_image,
       gender: update_data.gender,
       name: update_data.name,
