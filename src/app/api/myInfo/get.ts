@@ -1,9 +1,9 @@
-import { ObjectId } from "mongodb";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
-import { connectToDatabase } from "@/utils/db";
 import { verify } from "@/utils/jwt";
+
+import { getMyInfo } from "./server";
 
 const GET = async (
   req: Request,
@@ -22,10 +22,7 @@ const GET = async (
     headers: new_headers
   });
 
-  const client = await connectToDatabase();
-  const dataCollection = client.db().collection("data");
-  const objcet_id = ObjectId.createFromHexString(verified.payload.id);
-  const data = await dataCollection.findOne({ _id: objcet_id });
+  const data = await getMyInfo(verified.payload.id);
   
   if(!data) {
     return new NextResponse(JSON.stringify({

@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import React from "react";
 
 import { ClientDataDBString, defaultClientDataDBString } from "@/app/oauth/(main)/type";
@@ -11,6 +12,7 @@ import InfoFrame from "../edit/infoFrame";
 import Menu from "../menu";
 
 const Outing = () => {
+  const router = useRouter();
   const [loading, setLoading] = React.useState(false);
   const [newSelected, setNewSelected] = React.useState<ClientDataDBString>(defaultClientDataDBString);
 
@@ -21,6 +23,7 @@ const Outing = () => {
       const res = await instance.put("/api/oauth", newSelected);
       alert.update(loading, res.data.message, "success");
       setNewSelected(defaultClientDataDBString);
+      router.refresh();
     }
     catch(e: any){
       alert.update(loading, e.response.data.message, "error");

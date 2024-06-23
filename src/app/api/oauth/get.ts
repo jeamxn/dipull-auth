@@ -5,6 +5,8 @@ import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/utils/db";
 import { verify } from "@/utils/jwt";
 
+import { getMyOauth } from "./server";
+
 const GET = async (
   req: Request,
 ) => {
@@ -22,9 +24,7 @@ const GET = async (
     headers: new_headers
   });
 
-  const client = await connectToDatabase();
-  const clientsCollection = client.db().collection("clients");
-  const data = await clientsCollection.find({ owner: verified.payload.id }).toArray();
+  const data = await getMyOauth(verified.payload.id);
   
   if(!data) {
     return new NextResponse(JSON.stringify({
