@@ -32,6 +32,6 @@ export const defaultDataData: DataInfo = {
   gender: "male",
   name: "",
   number: 0,
-  profile_image: "https://dimigo.net/profile.jpg",
+  profile_image: "/profile.jpg",
   type: "student",
 };
