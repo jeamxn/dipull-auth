@@ -1,11 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-import { ClientDataDB, ClientDataDBString } from "@/app/oauth/(main)/type";
-import Insider from "@/provider/insider";
+import { ClientDataDBString } from "@/app/oauth/(main)/type";
+import Linker from "@/components/Linker";
 import { alert } from "@/utils/alert";
 import instance from "@/utils/instance";
 
@@ -112,7 +111,7 @@ const DevEditContent = ({
                 }) : (
                   <tr className="w-full border-y border-text/10">
                     <td className="text-center px-4 whitespace-nowrap py-2 text-text/50" colSpan={4}>
-                        등록된 Oauth가 없습니다. <Link href="/developers/add" className="cursor-pointer underline">등록하기</Link>
+                        등록된 Oauth가 없습니다. <Linker href="/developers/add" className="cursor-pointer underline">등록하기</Linker>
                     </td>
                   </tr>
                 )
