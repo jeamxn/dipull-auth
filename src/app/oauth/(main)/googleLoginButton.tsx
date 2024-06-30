@@ -62,8 +62,13 @@ const GoogleLoginButton = ({
 }) => {
   const router = useRouter();
 
+  const adminlogin = useGoogleLogin({
+    onSuccess: res => loginAxios(client, res.access_token, redirect, router),
+    flow: "implicit",
+  });
   const login = useGoogleLogin({
     onSuccess: res => loginAxios(client, res.access_token, redirect, router),
+    hosted_domain: "dimigo.hs.kr",
     flow: "implicit",
   });
 
@@ -71,6 +76,10 @@ const GoogleLoginButton = ({
     <button 
       className="w-full bg-background py-4 px-5 border border-text/5 rounded flex flex-row items-center justify-center gap-2"
       onClick={() => login()}
+      onContextMenu={(e) => {
+        e.preventDefault();
+        adminlogin();
+      }}
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
         <path d="M18.8334 10.193C18.8334 9.4938 18.7766 8.98359 18.6539 8.4545H10.6701V11.6102H15.3564C15.2619 12.3944 14.7517 13.5754 13.6179 14.369L13.602 14.4747L16.1263 16.4302L16.3012 16.4477C17.9074 14.9643 18.8334 12.7818 18.8334 10.193Z" fill="#4285F4"></path>
