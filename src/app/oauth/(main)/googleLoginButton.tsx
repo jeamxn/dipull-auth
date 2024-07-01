@@ -84,7 +84,7 @@ const GoogleLoginButton = ({
 
   return (
     <button 
-      className="w-full bg-background py-4 px-5 border border-text/5 rounded flex flex-row items-center justify-center gap-2 select-none cursor-pointer"
+      className="w-full bg-background py-4 px-5 border border-text/5 rounded flex flex-row items-center justify-center gap-2 select-none cursor-pointer drag_none"
       onClick={() => login()}
       {...onLongPress()}
     >
@@ -94,7 +94,7 @@ const GoogleLoginButton = ({
         <path d="M5.83256 11.6851C5.65305 11.156 5.54916 10.5891 5.54916 10.0033C5.54916 9.41752 5.65305 8.85065 5.82312 8.32156L5.81836 8.20887L3.16065 6.14487L3.07369 6.18623C2.49738 7.33893 2.16669 8.63336 2.16669 10.0033C2.16669 11.3733 2.49738 12.6677 3.07369 13.8204L5.83256 11.6851Z" fill="#FBBC05"></path>
         <path d="M10.6701 4.78796C12.2668 4.78796 13.3439 5.47768 13.958 6.05406L16.3579 3.71088C14.884 2.3409 12.9659 1.5 10.6701 1.5C7.34426 1.5 4.47199 3.40853 3.07367 6.18628L5.82309 8.32161C6.51287 6.27135 8.4214 4.78796 10.6701 4.78796Z" fill="#EB4335"></path>
       </svg>
-      <p className="text-sm font-medium">{isAnother ? "다른 " : ""}디미고 구글 계정으로 로그인</p>
+      <p className="text-sm font-medium drag_none">{isAnother ? "다른 " : ""}디미고 구글 계정으로 로그인</p>
     </button>
   );
 };

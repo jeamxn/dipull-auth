@@ -17,6 +17,14 @@
   transition: var(--transition-default);
 }
 
+.drag_none {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
 @keyframes rainbow {
   0% {
     background-position: 100% 0%;
