@@ -22,7 +22,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-toastify": "^10.0.5",
-    "recoil": "^0.7.7"
+    "recoil": "^0.7.7",
+    "use-long-press": "^3.2.0"
   },
   "devDependencies": {
     "typescript": "^5",
