@@ -84,7 +84,7 @@ const GoogleLoginButton = ({
 
   return (
     <button 
-      className="w-full bg-background py-4 px-5 border border-text/5 rounded flex flex-row items-center justify-center gap-2 select-none"
+      className="w-full bg-background py-4 px-5 border border-text/5 rounded flex flex-row items-center justify-center gap-2 select-none cursor-pointer"
       {...onLongPress()}
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
